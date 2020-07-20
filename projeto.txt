@@ -1,0 +1,50 @@
+CREATE TABLE CLIENTE (
+cpf varchar(11),
+nome varchar(255) ,
+telefone varchar(15),
+produtocomprado varchar (255)
+PRIMARY KEY (cpf)
+);
+
+CREATE TABLE FUNCIONARIO (
+idfunc int(8) NOT NULL auto_increment,
+nomefunc varchar (255),
+PRIMARY KEY (idfunc)
+);
+
+
+CREATE TABLE PRODUTO (
+id int NOT NULL auto_increment,
+descricao VARCHAR(255) ,
+preco decimal(9,2) ,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE VENDAS (
+produto varchar (255),
+preco decimal (9,2),
+funcionario varchar (255),
+
+);
+
+INSERT INTO `cliente`(`cpf`, `nome`, `telefone`) VALUES ('18927','Maria Jose',NULL, ‘Anel banhado a ouro’), ('4626277367','Damiao Freitas',NULL, ‘Relogio dos anos 70’), ('52672827822','Herbert Viana','9189272827', ‘Broche de prata’), ('54672672','Claudia Lenita',NULL,’Brinco argola de ouro’), ('6878728', 'Joao Pedro','909090909', ‘cordão de bronze’), ('78262863','Juliana Lima','879657778',’Brinco argola de ouro’), ('9891772','Mariana Freire','898298292', ‘Anel banhado a ouro’);
+
+INSERT INTO `funcionario`(`idfunc`, `nomefunc`) VALUES ('1', 'Maria Jose'), ('2', 'Mariana Lopes'), ('3','Luciana Gomes'), ('4','Gerson Lima'), ('5', 'Lucas Viana');
+
+INSERT INTO `produto`(`id`, `descricao`, `preco`) VALUES ('12','Anel banhado a ouro','290.00'), ('13', 'Broche de prata', '1200.00'), ('45','Cordão de bronze','140.00'), ('9000','Relogio dos anos 70','300.00'), ('9090','Brinco de argola ouro','1200.00');
+
+INSERT INTO `vendas`(`produto`, `preco`, `funcionario`, `Objetocomprado`) VALUES ('12', '290.00', 'Lucas Viana', 'Anel banhado a ouro'), ('45','140.00','Mariana Freire','Cordao de bronze'), ('12', '290.00', 'Maria Jose', 'Anel banhado a ouro'), ('9000','300.00','Luciana Gomes','Relogio dos anos 70'), ('9090','1200.00','Lucas Viana','Brinco de argola ouro');
+
+UPDATES
+UPDATE `produto` SET `preco`= 800.00 WHERE id = 45
+UPDATE `funcionario` SET `idfunc`= 9000,`nomefunc`= 'Hariane Almeida' WHERE nomefunc = 'Lucas Viana'
+UPDATE `vendas` SET `preco`= 800.00,`funcionario`= 'Hariane Almeida' WHERE produto = 45
+
+PESQUISAS
+SELECT `produto`, `preco`, `Objetocomprado` FROM `vendas` WHERE preco > 1000.00
+SELECT `produto`, `preco`, `Objetocomprado` FROM `vendas` WHERE funcionario = 'Maria Jose'
+
+SELECT  `Objetocomprado`, `nomedocliente` FROM `vendas` inner JOIN cliente on vendas.nomedocliente = cliente.cpf WHERE preco > 500.00
+
+
+
